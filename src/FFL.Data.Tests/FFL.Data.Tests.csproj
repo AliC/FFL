@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="microsoft.aspnetcore.hosting" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.server.iisintegration" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.server.kestrel" Version="2.0.1" />
+    <PackageReference Include="microsoft.aspnetcore.testhost" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="microsoft.extensions.configuration.usersecrets" Version="2.0.0" />
+    <PackageReference Include="microsoft.extensions.logging.configuration" Version="2.0.0" />
+    <PackageReference Include="microsoft.extensions.logging.console" Version="2.0.0" />
+    <PackageReference Include="microsoft.extensions.logging.debug" Version="2.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="moq" Version="4.8.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
@@ -15,6 +26,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FFL.Data\FFL.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore">
+      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore\2.0.1\lib\netstandard2.0\Microsoft.AspNetCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
