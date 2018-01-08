@@ -16,6 +16,15 @@ namespace FFL.Data.Tests
 {
     public class PlayerRepositoryTests
     {
+        private HttpClient _client;
+
+        public PlayerRepositoryTests()
+        {
+            var builder = CreateWebHostBuilder();
+            TestServer server = new TestServer(builder);
+            _client = server.CreateClient();
+        }
+
         // unit test?
         [Fact(Skip = "Complete this test")]
         public void CorrectUrl()
@@ -29,10 +38,7 @@ namespace FFL.Data.Tests
         [Fact]
         public async Task WhenPlayerStatisticsAreRequested_PlayerStatisticsAreRetrievedAndMapped()
         {
-            var builder = CreateWebHostBuilder();
-            TestServer server = new TestServer(builder);
-            HttpClient client = server.CreateClient();
-            PlayerRepository repo = new PlayerRepository(client);
+            PlayerRepository repo = new PlayerRepository(_client);
             IList<PlayerProperties> playerStats = await repo.GetStatsAsync();
 
             Assert.NotNull(playerStats);
