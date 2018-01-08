@@ -17,12 +17,14 @@ namespace FFL.Data.Tests
     public class PlayerRepositoryTests
     {
         private HttpClient _client;
+        private PlayerRepository _repository;
 
         public PlayerRepositoryTests()
         {
             var builder = CreateWebHostBuilder();
             TestServer server = new TestServer(builder);
             _client = server.CreateClient();
+            _repository = new PlayerRepository(_client);
         }
 
         // unit test?
@@ -38,8 +40,7 @@ namespace FFL.Data.Tests
         [Fact]
         public async Task WhenPlayerStatisticsAreRequested_PlayerStatisticsAreRetrievedAndMapped()
         {
-            PlayerRepository repo = new PlayerRepository(_client);
-            IList<PlayerProperties> playerStats = await repo.GetStatsAsync();
+            IList<PlayerProperties> playerStats = await _repository.GetStatsAsync();
 
             Assert.NotNull(playerStats);
             Assert.NotEmpty(playerStats);
