@@ -14,12 +14,22 @@ using Xunit;
 
 namespace FFL.Data.Tests
 {
-    public class UnitTest1
+    public class PlayerRepositoryTests
     {
-        [Fact]
-        public async Task Test1Async()
+        // unit test?
+        [Fact(Skip = "Complete this test")]
+        public void CorrectUrl()
         {
-            var builder = foo();
+            string expectedUri = "https://fantasy.premierleague.com/drf/elements/";
+
+
+        }
+
+        // int test
+        [Fact]
+        public async Task WhenPlayerStatisticsAreRequested_PlayerStatisticsAreRetrievedAndMapped()
+        {
+            var builder = CreateWebHostBuilder();
             TestServer server = new TestServer(builder);
             HttpClient client = server.CreateClient();
             PlayerRepository repo = new PlayerRepository(client);
@@ -30,30 +40,21 @@ namespace FFL.Data.Tests
             Assert.Equal("Kevin De Bruyne", playerStats[0].first_name);
         }
 
-        //public static IWebHost BuildWebHost(string[] args) =>
-        //    WebHost.CreateDefaultBuilder(args)
-        //        .UseStartup<Startup>()
-        //        .Build();
-
-        private IWebHostBuilder foo()
+        private IWebHostBuilder CreateWebHostBuilder()
         {
-            string[] args = new string[] { };
+            string[] args = { };
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("hosting.json", optional: true)
                 .AddCommandLine(args)
-                
                 .Build();
 
             return WebHost.CreateDefaultBuilder()
-                //.UseUrls("http://*:5000")
                 .UseConfiguration(config)
                 .Configure(app =>
                 {
-                    //app.Map(,)
-                    app.Run(context =>
-                        context.Response.WriteAsync("[{\"first_name\":\"Kevin De Bruyne\"}]"));
+                    app.Run(context => context.Response.WriteAsync("[{\"first_name\":\"Kevin De Bruyne\"}]"));
                 });
         }
     }
