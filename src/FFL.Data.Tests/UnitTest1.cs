@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using Moq;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -31,7 +29,7 @@ namespace FFL.Data.Tests
 
             string expectedUri = "https://fantasy.premierleague.com/drf/elements/";
 
-            IList<PlayerProperties> playerStats = await _repository.GetStatsAsync();
+            await _repository.GetStatsAsync();
 
             Assert.Equal(expectedUri, _client.BaseAddress.ToString());
         }
