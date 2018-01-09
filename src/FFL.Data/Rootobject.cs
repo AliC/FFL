@@ -4,7 +4,7 @@ using System;
 namespace FFL.Data
 {
     
-    public class PlayerProperties
+    public class Player
     {
         public int id { get; set; }
         public string photo { get; set; }

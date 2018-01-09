@@ -22,43 +22,43 @@ namespace FFL.Data.Tests
 
         // unit test?
         [Fact]
-        public async Task PlayerStatisticsRequestIsMadeToCorrectUrl()
+        public async Task PlayersRequestIsMadeToCorrectUrl()
         {
             _handler = CreateWebHostHandler200();
             ArrangeAndAct();
 
             string expectedUri = "https://fantasy.premierleague.com/drf/elements/";
 
-            await _repository.GetStatsAsync();
+            await _repository.Get();
 
             Assert.Equal(expectedUri, _client.BaseAddress.ToString());
         }
 
         // int test
         [Fact]
-        public async Task WhenPlayerStatisticsAreRequested_PlayerStatisticsAreRetrievedAndMapped()
+        public async Task WhenPlayersAreRequested_PlayersAreRetrievedAndMapped()
         {
             _handler = CreateWebHostHandler200();
             ArrangeAndAct();
 
-            IList<PlayerProperties> playerStats = await _repository.GetStatsAsync();
+            IList<Player> players = await _repository.Get();
 
-            Assert.NotNull(playerStats);
-            Assert.NotEmpty(playerStats);
-            Assert.Equal("Kevin De Bruyne", playerStats[0].first_name);
+            Assert.NotNull(players);
+            Assert.NotEmpty(players);
+            Assert.Equal("Kevin De Bruyne", players[0].first_name);
         }
 
         // int test
         [Fact]
-        public async Task WhenPlayerStatisticsAreRequestedButSomethingGoesWrong_AnEmptyCollectionIsReturned()
+        public async Task WhenPlayersAreRequestedButSomethingGoesWrong_AnEmptyPlayerCollectionIsReturned()
         {
             _handler = CreateWebHostHandler404();
             ArrangeAndAct();
 
-            IList<PlayerProperties> playerStats = await _repository.GetStatsAsync();
+            IList<Player> players = await _repository.Get();
 
-            Assert.NotNull(playerStats);
-            Assert.Empty(playerStats);
+            Assert.NotNull(players);
+            Assert.Empty(players);
         }
 
         private void ArrangeAndAct()

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,7 +11,7 @@ namespace FFL.Data
 
         public PlayerRepository(HttpClient client) => _httpClient = client;
 
-        public async Task<IList<PlayerProperties>> GetStatsAsync()
+        public async Task<IList<Player>> Get()
         {
             var uri = "https://fantasy.premierleague.com/drf/elements/";
             using (var request = new HttpRequestMessage(HttpMethod.Get, uri))
@@ -21,11 +20,11 @@ namespace FFL.Data
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<IList<PlayerProperties>>(responseContent);
+                    return JsonConvert.DeserializeObject<IList<Player>>(responseContent);
                 }
             }
 
-            return new List<PlayerProperties>();
+            return new List<Player>();
         }
     }
 }
