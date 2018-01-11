@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Moq;
 using Moq.Protected;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -23,10 +24,12 @@ namespace FFL.Data.Tests
         private PlayerRepository _repository;
         private IWebHostBuilder _builder;
         private RequestDelegate _handler;
+        private IList<Player> _players;
 
         [Fact]
         public async Task PlayersRequestIsMadeToCorrectUrl()
         {
+            // uses HttpClient testing approach from https://github.com/dotnet/corefx/issues/1624#issuecomment-100755941
             Uri requestUri = new Uri("https://fantasy.premierleague.com/drf/elements/");
             string response = "[{\"first_name\":\"Kevin De Bruyne\"}]";
 
@@ -36,8 +39,7 @@ namespace FFL.Data.Tests
                 .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(response) });
 
             _client = new HttpClient(handler.Object);
-            Act();
-            await _repository.Get();
+            await Act();
 
             handler.Protected().Verify("SendAsync", Times.Once(), ItExpr.Is<HttpRequestMessage>(m => m.RequestUri == requestUri), ItExpr.IsAny<CancellationToken>());
         }
@@ -47,13 +49,12 @@ namespace FFL.Data.Tests
         public async Task WhenPlayersAreRequested_PlayersAreRetrievedAndMapped()
         {
             _handler = CreateWebHostHandler200();
-            ArrangeAndAct();
+            Arrange();
+            await Act();
 
-            IList<Player> players = await _repository.Get();
-
-            Assert.NotNull(players);
-            Assert.NotEmpty(players);
-            Assert.Equal("Kevin De Bruyne", players[0].first_name);
+            Assert.NotNull(_players);
+            Assert.NotEmpty(_players);
+            Assert.Equal("Kevin De Bruyne", _players[0].first_name);
         }
 
         // int test
@@ -61,26 +62,24 @@ namespace FFL.Data.Tests
         public async Task WhenPlayersAreRequestedButSomethingGoesWrong_AnEmptyPlayerCollectionIsReturned()
         {
             _handler = CreateWebHostHandler404();
-            ArrangeAndAct();
+            Arrange();
+            await Act();
 
-            IList<Player> players = await _repository.Get();
-
-            Assert.NotNull(players);
-            Assert.Empty(players);
+            Assert.NotNull(_players);
+            Assert.Empty(_players);
         }
 
-        private void ArrangeAndAct()
+        private void Arrange()
         {
             _builder = CreateWebHostBuilder();
             TestServer server = new TestServer(_builder);
             _client = server.CreateClient();
-
-            Act();
         }
 
-        private void Act()
+        private async Task Act() 
         {
             _repository = new PlayerRepository(_client);
+            _players = await _repository.Get();
         }
 
         private RequestDelegate CreateWebHostHandler200()
