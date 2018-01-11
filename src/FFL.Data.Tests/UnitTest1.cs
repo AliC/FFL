@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
+using Moq;
+using Moq.Protected;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -20,18 +24,22 @@ namespace FFL.Data.Tests
         private IWebHostBuilder _builder;
         private RequestDelegate _handler;
 
-        // unit test?
         [Fact]
-        public async Task PlayersRequestIsMadeToCorrectUrl()
+        public async Task foo()
         {
-            _handler = CreateWebHostHandler200();
-            ArrangeAndAct();
+            Uri requestUri = new Uri("https://fantasy.premierleague.com/drf/elements/");
+            string response = "[{\"first_name\":\"Kevin De Bruyne\"}]";
 
-            string expectedUri = "https://fantasy.premierleague.com/drf/elements/";
+            Mock<HttpClientHandler> handler = new Mock<HttpClientHandler>();
+            handler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(response) });
 
+            _client = new HttpClient(handler.Object);
+            Act();
             await _repository.Get();
 
-            Assert.Equal(expectedUri, _client.BaseAddress.ToString());
+            handler.Protected().Verify("SendAsync", Times.Once(), ItExpr.Is<HttpRequestMessage>(m => m.RequestUri == requestUri), ItExpr.IsAny<CancellationToken>());
         }
 
         // int test
