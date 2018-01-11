@@ -25,7 +25,7 @@ namespace FFL.Data.Tests
         private RequestDelegate _handler;
 
         [Fact]
-        public async Task foo()
+        public async Task PlayersRequestIsMadeToCorrectUrl()
         {
             Uri requestUri = new Uri("https://fantasy.premierleague.com/drf/elements/");
             string response = "[{\"first_name\":\"Kevin De Bruyne\"}]";
