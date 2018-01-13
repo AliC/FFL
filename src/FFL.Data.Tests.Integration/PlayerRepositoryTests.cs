@@ -4,19 +4,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
-using Moq;
-using Moq.Protected;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace FFL.Data.Tests
+namespace FFL.Data.Tests.Integration
 {
     public class PlayerRepositoryTests
     {
@@ -26,25 +21,6 @@ namespace FFL.Data.Tests
         private RequestDelegate _handler;
         private IList<Player> _players;
 
-        [Fact]
-        public async Task PlayersRequestIsMadeToCorrectUrl()
-        {
-            // uses HttpClient testing approach from https://github.com/dotnet/corefx/issues/1624#issuecomment-100755941
-            Uri requestUri = new Uri("https://fantasy.premierleague.com/drf/elements/");
-            string response = "[{\"first_name\":\"Kevin De Bruyne\"}]";
-
-            Mock<HttpClientHandler> handler = new Mock<HttpClientHandler>();
-            handler.Protected()
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(response) });
-
-            _client = new HttpClient(handler.Object);
-            await Act();
-
-            handler.Protected().Verify("SendAsync", Times.Once(), ItExpr.Is<HttpRequestMessage>(m => m.RequestUri == requestUri), ItExpr.IsAny<CancellationToken>());
-        }
-
-        // int test
         [Fact]
         public async Task WhenPlayersAreRequested_PlayersAreRetrievedAndMapped()
         {
@@ -76,7 +52,7 @@ namespace FFL.Data.Tests
             _client = server.CreateClient();
         }
 
-        private async Task Act() 
+        private async Task Act()
         {
             _repository = new PlayerRepository(_client);
             _players = await _repository.Get();
