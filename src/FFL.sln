@@ -5,11 +5,17 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data", "FFL.Data\FFL.Data.csproj", "{1F3F3C9B-E685-49D2-87F4-248FADC4A420}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Empty", "Web.Empty\Web.Empty.csproj", "{F2B414D8-6634-4471-9E4A-2A5240AD2916}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Empty", "Web.Empty\Web.Empty.csproj", "{F2B414D8-6634-4471-9E4A-2A5240AD2916}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data.Tests.Integration", "FFL.Data.Tests.Integration\FFL.Data.Tests.Integration.csproj", "{2013A7AF-CFCE-457B-AFD3-04E4F6DDB839}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.Data.Tests.Unit", "FFL.Data.Tests.Unit\FFL.Data.Tests.Unit.csproj", "{512D5F0F-DC34-4201-87B1-76067594CA10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data.Tests.Unit", "FFL.Data.Tests.Unit\FFL.Data.Tests.Unit.csproj", "{512D5F0F-DC34-4201-87B1-76067594CA10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web", "FFL.UI.Web\FFL.UI.Web.csproj", "{4C87CA46-3F06-413A-A146-65E0B389FE78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web.Mvc", "FFL.UI.Web.Mvc\FFL.UI.Web.Mvc.csproj", "{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web.Mvc.Tests", "FFL.UI.Web.Mvc.Tests\FFL.UI.Web.Mvc.Tests.csproj", "{48C96798-D90B-451C-9805-29CADDD0ABFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,17 @@ Global
 		{512D5F0F-DC34-4201-87B1-76067594CA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{512D5F0F-DC34-4201-87B1-76067594CA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{512D5F0F-DC34-4201-87B1-76067594CA10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C87CA46-3F06-413A-A146-65E0B389FE78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C87CA46-3F06-413A-A146-65E0B389FE78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C87CA46-3F06-413A-A146-65E0B389FE78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C96798-D90B-451C-9805-29CADDD0ABFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C96798-D90B-451C-9805-29CADDD0ABFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C96798-D90B-451C-9805-29CADDD0ABFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C96798-D90B-451C-9805-29CADDD0ABFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
