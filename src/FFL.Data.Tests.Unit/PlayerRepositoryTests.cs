@@ -15,7 +15,7 @@ namespace FFL.Data.Tests.Unit
         private HttpClient _client;
         private Mock<HttpClientHandler> _handler = new Mock<HttpClientHandler>();
         private PlayerRepository _repository;
-        private IList<Player> _players;
+        private IEnumerable<Player> _players;
 
         [Fact]
         public async Task PlayersRequestIsMadeWithCorrectVerb()

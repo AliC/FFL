@@ -13,4 +13,12 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Player\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FFL.Data\FFL.Data.csproj" />
+  </ItemGroup>
+
 </Project>

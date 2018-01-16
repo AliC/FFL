@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace FFL.Data.Tests.Integration
         private PlayerRepository _repository;
         private IWebHostBuilder _builder;
         private RequestDelegate _handler;
-        private IList<Player> _players;
+        private IEnumerable<Player> _players;
 
         [Fact]
         public async Task WhenPlayersAreRequested_PlayersAreRetrievedAndMapped()
@@ -30,7 +31,7 @@ namespace FFL.Data.Tests.Integration
 
             Assert.NotNull(_players);
             Assert.NotEmpty(_players);
-            Assert.Equal("Kevin De Bruyne", _players[0].first_name);
+            Assert.Equal("Kevin De Bruyne", _players.First().first_name);
         }
 
         // int test

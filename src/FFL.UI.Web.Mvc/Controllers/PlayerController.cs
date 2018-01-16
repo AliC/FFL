@@ -1,18 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using FFL.Data;
 
 namespace FFL.UI.Web.Mvc.Controllers
 {
     public class PlayerController : Controller
     {
-        // GET: Player
-        public ActionResult Index()
+        private readonly IPlayerRepository _repository;
+
+        public PlayerController(IPlayerRepository repository)
         {
-            return View();
+            _repository = repository;
+        }
+
+        // GET: Player
+        public async Task<ActionResult> Index()
+        {
+            IEnumerable<Data.Player> players = await _repository.Get();
+            IEnumerable<Models.Player> playerModels = Map(players);
+
+            return View(playerModels);
+        }
+
+        private IEnumerable<Models.Player> Map(IEnumerable<Data.Player> players)
+        {
+            return players.Select(p => new Models.Player {Name = p.first_name + " " + p.second_name});
         }
 
         // GET: Player/Details/5

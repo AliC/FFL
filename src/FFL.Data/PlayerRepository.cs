@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace FFL.Data
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
         private HttpClient _httpClient;
 
         public PlayerRepository(HttpClient client) => _httpClient = client;
 
-        public async Task<IList<Player>> Get()
+        public async Task<IEnumerable<Player>> Get()
         {
             var uri = "https://fantasy.premierleague.com/drf/elements/";
             using (var request = new HttpRequestMessage(HttpMethod.Get, uri))
@@ -20,11 +20,15 @@ namespace FFL.Data
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<IList<Player>>(responseContent);
+                    return JsonConvert.DeserializeObject<IEnumerable<Player>>(responseContent);
                 }
             }
 
             return new List<Player>();
         }
+    }
+    public interface IPlayerRepository
+    {
+        Task<IEnumerable<Player>> Get();
     }
 }
