@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data", "src\FFL.Data\FFL.Data.csproj", "{1F3F3C9B-E685-49D2-87F4-248FADC4A420}"
 EndProject
@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data.Tests.Integration"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.Data.Tests.Unit", "src\FFL.Data.Tests.Unit\FFL.Data.Tests.Unit.csproj", "{512D5F0F-DC34-4201-87B1-76067594CA10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web", "src\FFL.UI.Web\FFL.UI.Web.csproj", "{4C87CA46-3F06-413A-A146-65E0B389FE78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.UI.Web.Angular", "src\FFL.UI.Web.Angular\FFL.UI.Web.Angular.csproj", "{4C87CA46-3F06-413A-A146-65E0B389FE78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web.Mvc", "src\FFL.UI.Web.Mvc\FFL.UI.Web.Mvc.csproj", "{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.UI.Web.Mvc", "src\FFL.UI.Web.Mvc\FFL.UI.Web.Mvc.csproj", "{955E24F3-F6ED-4E5A-84EE-78CE19A1A30C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFL.UI.Web.Mvc.Tests", "src\FFL.UI.Web.Mvc.Tests\FFL.UI.Web.Mvc.Tests.csproj", "{48C96798-D90B-451C-9805-29CADDD0ABFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.UI.Web.Mvc.Tests", "src\FFL.UI.Web.Mvc.Tests\FFL.UI.Web.Mvc.Tests.csproj", "{48C96798-D90B-451C-9805-29CADDD0ABFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
