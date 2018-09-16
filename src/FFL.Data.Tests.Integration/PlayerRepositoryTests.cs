@@ -34,7 +34,6 @@ namespace FFL.Data.Tests.Integration
             Assert.Equal("Kevin De Bruyne", _players.First().first_name);
         }
 
-        // int test
         [Fact]
         public async Task WhenPlayersAreRequestedButSomethingGoesWrong_AnEmptyPlayerCollectionIsReturned()
         {
