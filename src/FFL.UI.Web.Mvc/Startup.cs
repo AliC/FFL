@@ -43,7 +43,7 @@ namespace FFL.UI.Web.Mvc
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Player}/{action=Index}/{id?}");
             });
         }
     }
