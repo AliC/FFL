@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.UI.Web.Mvc", "src\FFL.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFL.UI.Web.Mvc.Tests", "src\FFL.UI.Web.Mvc.Tests\FFL.UI.Web.Mvc.Tests.csproj", "{48C96798-D90B-451C-9805-29CADDD0ABFC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{59EB4F07-AFDE-45DA-8C30-ACA4A9F0F1AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2013A7AF-CFCE-457B-AFD3-04E4F6DDB839} = {59EB4F07-AFDE-45DA-8C30-ACA4A9F0F1AD}
+		{512D5F0F-DC34-4201-87B1-76067594CA10} = {59EB4F07-AFDE-45DA-8C30-ACA4A9F0F1AD}
+		{48C96798-D90B-451C-9805-29CADDD0ABFC} = {59EB4F07-AFDE-45DA-8C30-ACA4A9F0F1AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D7ADB1C-F086-4EC5-9037-E4370811459B}
